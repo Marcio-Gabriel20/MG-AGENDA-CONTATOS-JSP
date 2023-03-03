@@ -4,7 +4,7 @@
 <html lang="pt-br">
 	<head>
 		<meta charset="UTF-8">
-		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="style/style.css">
 		<link rel="icon" href="imgs/ctt.png">
 		<title>Agenda de Contatos</title>
 	</head>
@@ -14,7 +14,7 @@
 			<div id="acesso">
 				<img src="imgs/new-ctt.png">
 				<h1>Agenda de Contatos</h1>
-				<a href="main">Novo Contato</a>
+				<a href="novo-ctt.html">Novo Contato</a>
 			</div>
 		</div>
 	

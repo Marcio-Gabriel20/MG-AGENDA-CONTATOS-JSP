@@ -25,7 +25,7 @@ body {
 	justify-content: center;
 	background: 
 	linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-	url("imgs/paisagem.jpg");
+	url("../imgs/paisagem.jpg");
 	background-repeat: no-repeat;
 	background-size: center;
 }

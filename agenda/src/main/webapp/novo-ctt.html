@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet"/>
+<link rel="stylesheet" href="style/novo-ctt.css">
+<link rel="icon" href="imgs/ctt.png">
+<script src="scripts/validador.js" defer></script>
+<title>Agenda de Contatos - Novo Contato</title>
+</head>
+<body>
+
+	<div id="back">
+		<div id="acesso">
+			<h1>Criar Novo Contato</h1>
+			<form name="frmContato" action="">
+			
+				<div class="div nome">
+					<input type="text" name="nome" placeholder="Nome" class="inpNome">
+				</div>
+				
+				<div class="div fone">
+					<input type="text" name="fone" placeholder="Celular" class="inpFone">
+				</div>
+				
+				<div class="div email">
+					<input type="text" name="email" placeholder="E-mail">
+				</div>
+				
+				<div class="divMsgError"><p class="pMsgError"></p></div>
+				
+				<input type="button" value="Adicionar" class="btnAdd" onclick="validar()">
+			
+			</form>
+		</div>
+	</div>
+
+</body>
+</html>

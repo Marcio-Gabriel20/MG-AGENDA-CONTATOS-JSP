@@ -1,0 +1,132 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
+* {
+	
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	
+}
+
+body {
+	
+	font-family: 'Open Sans', sans-serif;
+	
+}
+
+#back {
+	
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: 
+	linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+	url("../imgs/paisagem.jpg");
+	background-repeat: no-repeat;
+	background-size: center;
+}
+
+#acesso {
+	
+	width: 25vw;
+	height: 55vh;
+	background-color: rgba(255, 255, 255, 0.1);
+	border-radius: 10px;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	
+}
+
+h1 {
+	
+	color: aqua;
+	margin: 10% 0;
+	
+}
+
+.div {
+	
+	display: flex;
+	flex-direction: column;
+	margin: 7% 0%;
+	width: 100%;
+	
+}
+
+form {
+	
+	display: flex;
+	flex-direction: column;
+	width: 75%;
+	height: 100%;
+	overflow: hidden;
+	align-items: center;
+	
+}
+
+form input {
+	
+	/*border: 1px solid aqua;*/
+	border: none;
+	border-bottom: 2px solid aqua;
+	background-color: transparent;
+	padding: 2%;
+	outline: none;
+	overflow: hidden;
+	color: white;
+	font-size: 1em;
+	animation: shake 5s;
+	
+}
+
+form input::placeholder {
+	
+	color: rgba(255, 255, 255, .5);
+	
+}
+
+.spn {
+	
+	color: transparent;
+	
+}
+
+.divMsgError {
+	
+	color: red;
+	
+}
+
+.btnAdd {
+	
+	margin-top: 10%;
+	padding: 2%;
+	width: 10vw;
+	border: 2px solid aqua;
+	border-radius: 10px;
+	text-align: center;
+	text-decoration: none;
+	font-weight: bold;
+	color: aqua;
+	cursor: pointer;
+	
+}
+
+.btnAdd:hover {
+	
+	background-color: aqua;
+	color: black;
+	transition: 1s;
+	
+}
+
+
+
+
+
+
