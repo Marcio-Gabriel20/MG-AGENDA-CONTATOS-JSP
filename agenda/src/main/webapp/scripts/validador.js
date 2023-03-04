@@ -6,6 +6,7 @@
 	 
 	 let nome = frmContato.nome.value;
 	 let fone = frmContato.fone.value;
+	 let email = frmContato.email.value;
 	 
 	 if(nome === "" && fone != "") {
 		 
@@ -26,10 +27,8 @@
 		 setTimeout(function() {
 			 
 			 let inputNome = document.querySelector('.inpNome');
-	 		 let inputFone = document.querySelector('.inpFone');
 	 
 	 		 inputNome.style.cssText = 'border-bottom: 2px solid aqua; transition: 2s;';
-	 		 inputFone.style.cssText = 'border-bottom: 2px solid aqua; transition: 2s;';
 			 
 		 }, 4000);
 		 
@@ -53,13 +52,13 @@
 		 
 		 setTimeout(function() {
 			 
-			 let inputNome = document.querySelector('.inpNome');
 	 		 let inputFone = document.querySelector('.inpFone');
 	 
-	 		 inputNome.style.cssText = 'border-bottom: 2px solid aqua; transition: 2s;';
 	 		 inputFone.style.cssText = 'border-bottom: 2px solid aqua; transition: 2s;';
 			 
 		 }, 4000);
+		 
+		 return false;
 		 
 	 } else if(nome === "" && fone === "") {
 		 
@@ -98,3 +97,30 @@
 	 }
 	 
  }
+ 
+/* Mascara de Telefone */
+ 
+function mascara(o,f){
+    v_obj=o
+    v_fun=f
+    setTimeout("execmascara()",1)
+}
+
+function execmascara(){
+    v_obj.value=v_fun(v_obj.value)
+}
+
+function mascaraFone(fone){
+    fone = fone.replace(/\D/g,""); //Remove tudo o que não é dígito
+    fone = fone.replace(/^(\d{2})(\d)/g,"($1) $2"); //Coloca parênteses em volta dos dois primeiros dígitos
+    fone = fone.replace(/(\d)(\d{4})$/,"$1-$2"); //Coloca hífen entre o quarto e o quinto dígitos
+    return fone;
+}
+
+window.onload = function(){
+	document.querySelector('.inpFone').onkeyup = function(){
+		mascara( this, mascaraFone );
+	}
+}
+ 
+ 
