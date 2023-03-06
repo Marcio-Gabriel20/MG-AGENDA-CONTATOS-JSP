@@ -6,7 +6,6 @@
 	 
 	 let nome = frmContato.nome.value;
 	 let fone = frmContato.fone.value;
-	 let email = frmContato.email.value;
 	 
 	 if(nome === "" && fone != "") {
 		 
@@ -103,10 +102,10 @@
 function mascara(o,f){
     v_obj=o
     v_fun=f
-    setTimeout("execmascara()",1)
+    setTimeout("execMascara()",1)
 }
 
-function execmascara(){
+function execMascara(){
     v_obj.value=v_fun(v_obj.value)
 }
 
