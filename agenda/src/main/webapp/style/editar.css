@@ -1,5 +1,7 @@
 @charset "UTF-8";
 
+@charset "UTF-8";
+
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
 
 * {
@@ -33,7 +35,7 @@ body {
 #acesso {
 	
 	width: 25vw;
-	height: 55vh;
+	height: 60vh;
 	background-color: rgba(255, 255, 255, 0.1);
 	border-radius: 10px;
 	display: flex;
@@ -73,6 +75,20 @@ form input {
 	
 	border: none;
 	border-bottom: 2px solid aqua;
+	background-color: transparent;
+	padding: 2%;
+	outline: none;
+	overflow: hidden;
+	color: white;
+	font-size: 1em;
+	animation: shake 5s;
+	
+}
+
+#inpId {
+	
+	border: none;
+	border-bottom: 2px solid #c0c0c0;
 	background-color: transparent;
 	padding: 2%;
 	outline: none;

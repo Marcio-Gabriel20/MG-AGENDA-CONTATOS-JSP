@@ -83,7 +83,7 @@ public class DAO {
 
 		ArrayList<JavaBeans> contatos = new ArrayList<>();
 
-		String read = "select * from contatos order by nome";
+		String read = "select * from contatos order by id";
 
 		try {
 
@@ -103,7 +103,7 @@ public class DAO {
 				String email = rs.getString(4);
 
 				// populando o ArrayList
-
+					
 				contatos.add(new JavaBeans(id, nome, fone, email));
 
 			}
@@ -119,6 +119,66 @@ public class DAO {
 
 		}
 
+	}
+	
+	/* CRUD UPDATE */
+	
+	// selecionar o contato
+	
+	public void selecionarContato(JavaBeans contato) {
+		
+		String read2 = "select * from contatos where id = ?";
+		
+		try {
+			
+			Connection con = conectar();			
+			PreparedStatement pst = con.prepareStatement(read2);			
+			pst.setString(1, contato.getId());
+			ResultSet rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				
+				contato.setId(rs.getString(1));
+				contato.setNome(rs.getString(2));
+				contato.setFone(rs.getString(3));
+				contato.setEmail(rs.getString(4));
+				
+			}
+			
+			con.close();
+			
+		} catch (Exception e) {
+
+			System.out.println(e);
+			
+		}
+		
+	}
+	
+	// Editar Contato
+	
+	public void alterarContato(JavaBeans contato) {
+		
+		String update = "update contatos set nome=?,fone=?,email=? where id=?";
+		
+		try {
+			
+			Connection con = conectar();
+			PreparedStatement pst = con.prepareStatement(update);			
+			pst.setString(1, contato.getNome());
+			pst.setString(2, contato.getFone());
+			pst.setString(3, contato.getEmail());
+			pst.setString(4, contato.getId());
+			pst.executeUpdate();
+			
+			con.close();
+			
+		} catch (Exception e) {
+			
+			System.out.println(e);
+			
+		}
+		
 	}
 
 	// Teste de Conexão
