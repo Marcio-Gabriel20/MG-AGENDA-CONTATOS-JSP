@@ -22,5 +22,6 @@
     <url-pattern>/insert</url-pattern>
     <url-pattern>/select</url-pattern>
     <url-pattern>/update</url-pattern>
+    <url-pattern>/delete</url-pattern>
   </servlet-mapping>
 </web-app>

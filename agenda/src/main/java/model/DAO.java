@@ -55,9 +55,9 @@ public class DAO {
 
 			// Substituir os parâmetros pelo (?) conteúdo das variáveis JavaBeans
 
-			pst.setString(1, contato.getNome());
-			pst.setString(2, contato.getFone());
-			pst.setString(3, contato.getEmail());
+			pst.setString(1, contato.getNome().replaceAll("\s+"," "));
+			pst.setString(2, contato.getFone().replaceAll("\s+"," "));
+			pst.setString(3, contato.getEmail().replaceAll("\s+"," "));
 
 			// Executar a query
 
@@ -165,16 +165,39 @@ public class DAO {
 			
 			Connection con = conectar();
 			PreparedStatement pst = con.prepareStatement(update);			
-			pst.setString(1, contato.getNome());
-			pst.setString(2, contato.getFone());
-			pst.setString(3, contato.getEmail());
-			pst.setString(4, contato.getId());
+			pst.setString(1, contato.getNome().replaceAll("\s+"," "));
+			pst.setString(2, contato.getFone().replaceAll("\s+"," "));
+			pst.setString(3, contato.getEmail().replaceAll("\s+"," "));
+			pst.setString(4, contato.getId().replaceAll("\s+"," "));
 			pst.executeUpdate();
 			
 			con.close();
 			
 		} catch (Exception e) {
 			
+			System.out.println(e);
+			
+		}
+		
+	}
+	
+	/* CRUD DELETE */
+	
+	public void deletarContato(JavaBeans contato) {
+		
+		String delete = "delete from contatos where id=?";
+		
+		try {
+			
+			Connection con = conectar();
+			PreparedStatement pst = con.prepareStatement(delete);
+			pst.setString(1, contato.getId());
+			pst.executeUpdate();
+			
+			con.close();
+			
+		} catch (Exception e) {
+
 			System.out.println(e);
 			
 		}

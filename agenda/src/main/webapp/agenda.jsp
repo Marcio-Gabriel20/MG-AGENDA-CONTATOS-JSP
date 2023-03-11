@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="style/agenda.css">
 <link rel="icon" href="imgs/ctt.png">
 <script src="https://kit.fontawesome.com/4ad013ec14.js" crossorigin="anonymous"></script>
+<script src="scripts/confirmador.js" defer></script>
 <title>Agenda de Contatos</title>
 </head>
 <body>
@@ -32,7 +33,7 @@
 							<p id="nome"><%= lista.get(i).getNome() %></p>
 						</div>
 						<a href="select?id=<%= lista.get(i).getId() %>" class="btn btnEditar"><i class="fa-solid fa-pen-to-square"></i></a>
-						<a href="" class="btn btnExcluir"><i class="fa-solid fa-trash"></i></a>
+						<a href="javascript: confirmar(<%= lista.get(i).getId() %>)" class="btn btnExcluir"><i class="fa-solid fa-trash"></i></a>
 					
 					</div>
 					<div id="divDados">
