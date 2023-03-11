@@ -50,7 +50,21 @@ h1 {
 	
 }
 
-.btnNovoCtt{
+.btnNovoCtt, .btnRelatorio {
+	
+	padding: 2%;
+	width: 10vw;
+	margin-bottom: 5%;
+	border: 2px solid aqua;
+	border-radius: 10px;
+	text-align: center;
+	text-decoration: none;
+	font-weight: bold;
+	color: aqua;
+	
+}
+
+.btnRelatorio {
 	
 	padding: 2%;
 	width: 10vw;
@@ -64,7 +78,7 @@ h1 {
 	
 }
 
-.btnNovoCtt:hover {
+.btnNovoCtt:hover, .btnRelatorio:hover {
 	
 	background-color: aqua;
 	color: black;

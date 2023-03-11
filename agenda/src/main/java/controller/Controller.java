@@ -3,12 +3,13 @@ package controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import com.itextpdf.text.Document;
+
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
 import model.DAO;
 import model.JavaBeans;
 
@@ -49,6 +50,10 @@ public class Controller extends HttpServlet {
 		} else if (action.equals("/delete")) {
 
 			removerContato(request, response);
+
+		} else if (action.equals("/report")) {
+
+			gerarRelatorio(request, response);
 
 		} else {
 
@@ -201,6 +206,15 @@ public class Controller extends HttpServlet {
 		dao.deletarContato(contato);
 		
 		response.sendRedirect("main");
+		
+	}
+	
+	// Gerar retório em PDF
+	
+	protected void gerarRelatorio(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		Document doc = new Document();
 		
 	}
 

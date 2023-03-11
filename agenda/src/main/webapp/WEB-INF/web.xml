@@ -23,5 +23,6 @@
     <url-pattern>/select</url-pattern>
     <url-pattern>/update</url-pattern>
     <url-pattern>/delete</url-pattern>
+    <url-pattern>/report</url-pattern>
   </servlet-mapping>
 </web-app>

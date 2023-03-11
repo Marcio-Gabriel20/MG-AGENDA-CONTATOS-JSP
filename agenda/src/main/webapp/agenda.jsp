@@ -23,6 +23,7 @@
 		<div id="acesso">
 			<h1>Agenda de Contatos</h1>
 			<a href="novo-ctt.html" class="btnNovoCtt">Novo Contato</a>
+			<a href="report" class="btnRelatorio">Relatório</a>
 			<div id="scroll">
 				<% for (int i = 0; i < lista.size(); i++) {%>
 				
