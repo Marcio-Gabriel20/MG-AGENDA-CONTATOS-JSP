@@ -2,8 +2,13 @@ package controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import com.itextpdf.text.Document;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -215,6 +220,63 @@ public class Controller extends HttpServlet {
 			throws ServletException, IOException {
 		
 		Document doc = new Document();
+		
+		try {
+			
+			// Tipo de conteúdo
+			
+			response.setContentType("apllication/pdf");
+			
+			// Nome do documento
+			
+			response.addHeader("Content-Disposition", "inline; filename=" + "contatos.pdf");
+			
+			// Criando o documento
+			
+			PdfWriter.getInstance(doc, response.getOutputStream());
+			
+			// Abrir o documento -> conteúdo
+			
+			doc.open();
+			doc.add(new Paragraph("Lista de contatos:"));
+			doc.add(new Paragraph(" "));
+			
+			// Criar uma tabela
+			
+			PdfPTable tabela = new PdfPTable(3);
+			
+			// cabeçalho
+			
+			PdfPCell col1 = new PdfPCell(new Paragraph("Nome"));
+			PdfPCell col2 = new PdfPCell(new Paragraph("Fone"));
+			PdfPCell col3 = new PdfPCell(new Paragraph("E-mail"));
+			
+			tabela.addCell(col1);
+			tabela.addCell(col2);
+			tabela.addCell(col3);
+			
+			// popular a tabela com os contatos
+			
+			ArrayList<JavaBeans> lista = dao.listarContatos();
+			
+			for(int i = 0; i < lista.size(); i++) {
+				
+				tabela.addCell(lista.get(i).getNome());
+				tabela.addCell(lista.get(i).getFone());
+				tabela.addCell(lista.get(i).getEmail());
+				
+			}
+			
+			doc.add(tabela);
+			
+			doc.close();
+			
+		} catch (Exception e) {
+			
+			System.out.println(e);
+			doc.close();
+			
+		}
 		
 	}
 
