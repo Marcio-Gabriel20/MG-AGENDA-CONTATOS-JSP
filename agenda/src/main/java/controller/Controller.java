@@ -2,7 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;
@@ -18,18 +17,38 @@ import jakarta.servlet.http.HttpServletResponse;
 import model.DAO;
 import model.JavaBeans;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Controller.
+ */
 public class Controller extends HttpServlet {
+	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
+	/** The dao. */
 	DAO dao = new DAO();
+	
+	/** The contato. */
 	JavaBeans contato = new JavaBeans();
 
+	/**
+	 * Instantiates a new controller.
+	 */
 	public Controller() {
 
 		super();
 
 	}
 
+	/**
+	 * Do get.
+	 *
+	 * @param request the request
+	 * @param response the response
+	 * @throws ServletException the servlet exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -42,7 +61,7 @@ public class Controller extends HttpServlet {
 
 		} else if (action.equals("/insert")) {
 
-			novoContato(request, response);
+			adicionarContato(request, response);
 
 		} else if (action.equals("/select")) {
 
@@ -66,103 +85,67 @@ public class Controller extends HttpServlet {
 
 		}
 
-		// Teste de Conexão
-
-		// dao.testeConexao();
-
 	}
 
-	// Listar contatos
-
+	/**
+	 * Contatos.
+	 *
+	 * @param request the request
+	 * @param response the response
+	 * @throws ServletException the servlet exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	protected void contatos(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// Criando um objeto que irá receber os dados JavaBeans
-
 		ArrayList<JavaBeans> lista = dao.listarContatos();
-
-		// Encaminhar a lista ao documento agenda.jsp
 
 		request.setAttribute("contatos", lista);
 		RequestDispatcher rd = request.getRequestDispatcher("agenda.jsp");
 		rd.forward(request, response);
 
-		// Teste de recebimento da lista
-
-		/*
-		 * for (int i = 0; i < lista.size(); i++) {
-		 * 
-		 * System.out.println(lista.get(i).getId());
-		 * System.out.println(lista.get(i).getNome());
-		 * System.out.println(lista.get(i).getFone());
-		 * System.out.println(lista.get(i).getEmail());
-		 * 
-		 * }
-		 */
-
 	}
 
-	// Novo contato
-
-	protected void novoContato(HttpServletRequest request, HttpServletResponse response)
+	/**
+	 * Adicionar contato.
+	 *
+	 * @param request the request
+	 * @param response the response
+	 * @throws ServletException the servlet exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
+	protected void adicionarContato(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		// teste de recebimento dos dados do formulário
-		// System.out.println(request.getParameter("nome"));
-		// System.out.println(request.getParameter("fone"));
-		// System.out.println(request.getParameter("email"));
-
-		// setar as variáveis JavaBeans
 
 		contato.setNome(request.getParameter("nome"));
 		contato.setFone(request.getParameter("fone"));
 		contato.setEmail(request.getParameter("email"));
 
-		// invocar o método inserirContato passando o objeto contato
-
 		dao.inserirContato(contato);
-
-		// redirecionar para o documento agenda.jsp
 
 		response.sendRedirect("main");
 
 	}
 
-	// Editar Contato
-
+	/**
+	 * Listar contato.
+	 *
+	 * @param request the request
+	 * @param response the response
+	 * @throws ServletException the servlet exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	protected void listarContato(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// Recebimento do ID do contato que será editado
-
-		String id = request.getParameter("id");
-
-		// System.out.println(id);
-
-		// Setar variável JavaBeans
-
-		contato.setId(id);
-
-		// Executar o método selecionarContato (DAO)
+		contato.setId(request.getParameter("id"));
 
 		dao.selecionarContato(contato);
-
-		// Teste de recebimento
-
-		/*
-		 * System.out.println(contato.getId()); System.out.println(contato.getNome());
-		 * System.out.println(contato.getFone());
-		 * System.out.println(contato.getEmail());
-		 */
-
-		// Setar os atributos do formulário com o conteúdo JavaBeans
 
 		request.setAttribute("id", contato.getId());
 		request.setAttribute("nome", contato.getNome());
 		request.setAttribute("fone", contato.getFone());
 		request.setAttribute("email", contato.getEmail());
-
-		// Encaminhar ao documento editar.jsp
 
 		RequestDispatcher rd = request.getRequestDispatcher("editar.jsp");
 
@@ -170,114 +153,103 @@ public class Controller extends HttpServlet {
 
 	}
 
+	/**
+	 * Editar contato.
+	 *
+	 * @param request the request
+	 * @param response the response
+	 * @throws ServletException the servlet exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	protected void editarContato(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		/*
-		 * System.out.println(request.getParameter("id"));
-		 * System.out.println(request.getParameter("nome"));
-		 * System.out.println(request.getParameter("fone"));
-		 * System.out.println(request.getParameter("email"));
-		 */
-
-		// Setar as variáveis JavaBeans
 
 		contato.setId(request.getParameter("id"));
 		contato.setNome(request.getParameter("nome"));
 		contato.setFone(request.getParameter("fone"));
 		contato.setEmail(request.getParameter("email"));
 
-		// Executar o método alterarContato
-
 		dao.alterarContato(contato);
 
-		// Redirecionar para o documento agenda.jsp (atualizando as alterações)
-
 		response.sendRedirect("main");
 
 	}
-	
-	// Remover um contato
-	
+
+	/**
+	 * Remover contato.
+	 *
+	 * @param request the request
+	 * @param response the response
+	 * @throws ServletException the servlet exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	protected void removerContato(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		// Recebimento do id do contato a ser excluído (validador.js)
-		String id = request.getParameter("id");
-		//System.out.println(id);
-		
-		contato.setId(id);
-		
+
+		contato.setId(request.getParameter("id"));
+
 		dao.deletarContato(contato);
-		
+
 		response.sendRedirect("main");
-		
+
 	}
-	
-	// Gerar retório em PDF
-	
+
+	/**
+	 * Gerar relatorio.
+	 *
+	 * @param request the request
+	 * @param response the response
+	 * @throws ServletException the servlet exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	protected void gerarRelatorio(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		Document doc = new Document();
-		
+
 		try {
-			
-			// Tipo de conteúdo
-			
+
 			response.setContentType("apllication/pdf");
-			
-			// Nome do documento
-			
+
 			response.addHeader("Content-Disposition", "inline; filename=" + "contatos.pdf");
-			
-			// Criando o documento
-			
+
 			PdfWriter.getInstance(doc, response.getOutputStream());
-			
-			// Abrir o documento -> conteúdo
-			
+
 			doc.open();
 			doc.add(new Paragraph("Lista de contatos:"));
 			doc.add(new Paragraph(" "));
-			
-			// Criar uma tabela
-			
+
 			PdfPTable tabela = new PdfPTable(3);
-			
-			// cabeçalho
-			
+
 			PdfPCell col1 = new PdfPCell(new Paragraph("Nome"));
 			PdfPCell col2 = new PdfPCell(new Paragraph("Fone"));
 			PdfPCell col3 = new PdfPCell(new Paragraph("E-mail"));
-			
+
 			tabela.addCell(col1);
 			tabela.addCell(col2);
 			tabela.addCell(col3);
-			
-			// popular a tabela com os contatos
-			
+
 			ArrayList<JavaBeans> lista = dao.listarContatos();
-			
-			for(int i = 0; i < lista.size(); i++) {
-				
+
+			for (int i = 0; i < lista.size(); i++) {
+
 				tabela.addCell(lista.get(i).getNome());
 				tabela.addCell(lista.get(i).getFone());
 				tabela.addCell(lista.get(i).getEmail());
-				
+
 			}
-			
+
 			doc.add(tabela);
-			
+
 			doc.close();
-			
+
 		} catch (Exception e) {
-			
+
 			System.out.println(e);
 			doc.close();
-			
+
 		}
-		
+
 	}
 
 }
